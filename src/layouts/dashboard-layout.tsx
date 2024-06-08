@@ -1,3 +1,4 @@
+import StoreSwitcher from "@/components/store-switcher";
 import ThemeToggle from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,9 +21,8 @@ import {
   PaintBucket,
   Search,
   Settings,
-  ShoppingCartIcon,
 } from "lucide-react";
-import { Link, NavLink, Navigate, Outlet } from "react-router-dom";
+import { NavLink, Navigate, Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
   const { token, setToken } = useTokenStore((state) => state);
@@ -41,10 +41,7 @@ const DashboardLayout = () => {
       <div className="hidden border-r bg-muted/40 md:block">
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
-            <Link to="/" className="flex items-center gap-2 font-semibold">
-              <ShoppingCartIcon className="h-6 w-6" />
-              <span>The Online Zone</span>
-            </Link>
+            <StoreSwitcher />
           </div>
 
           {/* SIDEBAR */}
@@ -138,13 +135,7 @@ const DashboardLayout = () => {
 
             <SheetContent side="left" className="flex flex-col">
               <nav className="grid gap-2 text-lg font-medium">
-                <Link
-                  to="/"
-                  className="flex items-center gap-2 text-lg font-semibold my-4"
-                >
-                  <ShoppingCartIcon className="h-6 w-6" />
-                  <span>The Online Zone</span>
-                </Link>
+                <StoreSwitcher />
 
                 <NavLink
                   to="/"
