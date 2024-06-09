@@ -6,16 +6,14 @@ export interface TokenStore {
   setToken: (data: string) => void;
 }
 
-const useTokenStore = create<TokenStore>()(
+export const useToken = create<TokenStore>()(
   devtools(
     persist(
       (set) => ({
-        token: "nabin",
+        token: "",
         setToken: (data: string) => set(() => ({ token: data })),
       }),
       { name: "token-store" }
     )
   )
 );
-
-export default useTokenStore;

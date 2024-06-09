@@ -15,11 +15,12 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import useTokenStore from "@/store";
+
+import { useToken } from "@/contexts/access-token";
 
 const Login = () => {
   const navigate = useNavigate();
-  const setToken = useTokenStore((state) => state.setToken);
+  const setToken = useToken((state) => state.setToken);
 
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -28,14 +29,13 @@ const Login = () => {
     mutationFn: login,
     onSuccess: (response) => {
       setToken(response.data.accessToken);
-      navigate("/dashboard/home");
+      navigate("/");
     },
   });
 
   const handleLoginSubmit = () => {
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
-    console.log("data", { email, password });
 
     if (!email || !password) {
       return alert("Please enter email and password");

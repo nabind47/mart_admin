@@ -11,7 +11,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import useTokenStore from "@/store";
+
+import { useToken } from "@/contexts/access-token";
+
 import {
   BookMarked,
   CircleUser,
@@ -25,7 +27,7 @@ import {
 import { NavLink, Navigate, Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
-  const { token, setToken } = useTokenStore((state) => state);
+  const { token, setToken } = useToken((state) => state);
 
   if (token === "") {
     return <Navigate to={"/auth/login"} replace />;

@@ -14,11 +14,8 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import useTokenStore from "@/store";
 
 const Register = () => {
-  const setToken = useTokenStore((state) => state.setToken);
-
   const navigate = useNavigate();
 
   const nameRef = useRef<HTMLInputElement>(null);
@@ -27,10 +24,8 @@ const Register = () => {
 
   const mutation = useMutation({
     mutationFn: register,
-    onSuccess: (response) => {
-      console.log("Login successful");
-      setToken(response.data.accessToken);
-      navigate("/dashboard/home");
+    onSuccess: () => {
+      navigate("/auth/login");
     },
   });
 
